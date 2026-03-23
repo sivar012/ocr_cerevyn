@@ -15,6 +15,20 @@ This project consists of two main parts:
 - **Data Validation**: Automatically categorizes and validates fields (Name, Amount, Date, ID) found in the processed document.
 - **RESTful API**: Fast and scalable API built with FastAPI.
 
+## Processing flow
+
+graph TD
+    A["Document Upload (PDF/Image)"] --> B["OCR Service"]
+    B --> C{"Text Extracted?"}
+    C -- No --> D["Error Response"]
+    C -- Yes --> E["Field Extractor"]
+    E --> F["Raw Data (Name, Amount, Date, ID)"]
+    G("Validator")
+    F --> G
+    G --> H{"Is Data Valid?"}
+    H -- No --> I["Automated Action: Manual Review Required"]
+    H -- Yes --> J["Automated Action: Automated Processing & Integration"]
+
 ## Tech Stack
 
 ### Backend
